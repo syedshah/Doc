@@ -1,0 +1,5 @@
+﻿@using Microsoft.AspNet.Identity
+@model DocProcessingWorkflow.Models.User.UserSummaryViewModel
+
+<h3 class="text-right pull-right col-md-4">Welcome, @Html.ActionLink( @Model.FirstName + " " + @Model.LastName + "!", "Edit", "User", new { userName = User.Identity.GetUserName() }, null)</h3>
+<div class="clearfix"></div>

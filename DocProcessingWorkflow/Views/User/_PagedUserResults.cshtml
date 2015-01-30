@@ -1,0 +1,33 @@
+﻿@using DocProcessingWorkflow.Resources.User
+@model DocProcessingWorkflow.Models.User.UsersViewModel
+
+@Html.HiddenFor(x => x.SearchUser, new { id = "SearchCriteria" })
+<table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Locked out</th>
+                <th></th>
+            </tr>
+        </thead>
+    <tbody data-bind="foreach: Users">
+        @foreach (var viewModel in Model.Users)
+        {
+            <tr>
+                @Html.Partial("_ShowSingleUser", viewModel)
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<p class="pagination col-md-12">
+    <span id="totalNumberOfDocuments"><strong>@Index.TotalItems @Model.PagingInfo.TotalItems</strong></span> | 
+    <span id="showingDocumentsSpan">@Index.ShowingUsers @Model.PagingInfo.StartRow - @Model.PagingInfo.EndRow</span> | 
+    @Html.Pager(Model.PagingInfo.ItemsPerPage, Model.PagingInfo.CurrentPage, Model.PagingInfo.TotalItems, new AjaxOptions { UpdateTargetId = "userList", OnBegin = "return DocProcessing.Users.searchFieldVal()", OnSuccess = "return DocProcessing.Users.onPageChangeSuccess()" }).Options(x => x.Action("SearchUsers"))
+<div id="results">
+</div>
+@Html.HiddenFor(m => Model.CurrentPage)
+@Html.HiddenFor(m => Model.UserSearchValue)

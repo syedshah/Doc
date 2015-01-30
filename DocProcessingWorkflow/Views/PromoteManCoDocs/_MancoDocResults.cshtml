@@ -1,0 +1,44 @@
+﻿@model DocProcessingWorkflow.Models.PromoteManCoDocs.PromoteManCoDocViewModel
+
+<div class="col-md-6"></div>
+<div class="col-md-12">
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <input type="text" id="docSearch" name="docSearch" class="form-control" placeholder="File Search" />
+                @Html.ListBoxFor(x => x.AvailableManCoDocs, new MultiSelectList(Model.ManCoDocs, "MancoDocId", "ManCoDocName"), new { @class = "form-control", style = "height:300px;" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <input id="btnAddAll" type="button" value=" >> " class="btn btn-default col-md-12" />
+            <input id="btnRemove" type="button" value="<" class="btn btn-default col-md-6"></input>
+
+            <input id="btnAdd" type="button" value=" > " class="btn btn-default col-md-6" />
+            <input id="btnRemoveAll" type="button" value=" << " class="btn btn-default col-md-12" />
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                @Html.ListBoxFor(x => x.SelectedManCoDocs, new List<SelectListItem>(), new { @class = "form-control", style = "height:300px;" })
+            </div>
+        </div>
+
+    </div>
+    <label id="docSelectedMessage"></label>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(x => x.Comment)<strong>:</strong>
+                @Html.TextAreaFor(x => x.Comment, new { @class = "form-control" });
+                <button type="submit" class="btn btn-page pull-right">
+                    <a id="promoteDocs"><span>Promote Docs</span></a>
+                </button>
+            </div>
+        </div>
+    </div>
+    @* <p class="pagination col-md-12">
+        <button type="submit" class="btn btn-page pull-right">
+            <a id="promoteDocs"><span>Promote Docs</span></a>
+        </button>
+    </p>*@
+</div>

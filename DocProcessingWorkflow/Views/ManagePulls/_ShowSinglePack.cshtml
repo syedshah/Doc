@@ -1,0 +1,14 @@
+﻿@model List<DocProcessingWorkflow.Models.ManagePulls.PackStoreViewModel>
+
+@for (int i = 0; i < Model.Count; i++)
+{
+  <tr class="data">
+    <td>@Html.CheckBoxFor(m => @Model[i].Selected, new { @class = "docSelected" })</td>
+    <td class="text-left">@Model[i].ClientReference</td>
+    @Html.HiddenFor(m => m[i].ClientReference, new { @class= "clientReference" })
+    <td class="text-center">@Model[i].Name</td>
+  </tr>
+}
+
+
+            

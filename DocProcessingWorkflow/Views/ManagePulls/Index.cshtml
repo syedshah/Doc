@@ -1,0 +1,65 @@
+﻿@model DocProcessingWorkflow.Models.ManagePulls.ManagePullsViewModel
+
+<div class="row">
+  <div class="col-md-12">
+    <h2>MANAGE PULLS <span class="glyphicon glyphicon-file pull-right"></span></h2>
+  </div>
+</div>
+<div id="Message">
+    @TempData["message"]
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      @Html.DropDownListFor(x => x.SelectedManCoId, new SelectList(Model.ManCos, "Code", "Description"), "Choose Company", new { @class = "form-control" })
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      @Html.DropDownListFor(x => x.SelectedJobId, new SelectList(Model.CompletedJobs, "Code", "JobDisplay"), "Choose Job", new { @class = "form-control" })
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-md-offset-8">
+    <div class="row search" style="margin-bottom: 15px;">
+      <div class="col-md-12">
+        <form id="manageJobsForm" class="form-inline" role="form">
+          <div class="form-group">
+            @Html.LabelFor(x => x.SearchField, "Pack Search")
+            @Html.TextBoxFor(x => x.SearchField, new { Class="form-control", placeholder="Search" })
+          </div>
+          <button id="SearchButton" type="button" class="btn btn-search"><span class="glyphicon glyphicon-search"></span></button>
+        </form>
+      </div>
+@*      <div class="col-md-6 text-right">
+        @if (Model.CanExportResults)
+        {
+          <a id="exportLink" onclick=" DocProcessing.Jobs.getReport();"  class="btn btn-login" title="Export" data-toggle="tooltip"><span class="glyphicon glyphicon-download"></span></a>
+        }
+        else
+        {
+          <a id="exportLink" onclick="DocProcessing.Jobs.getReport();"  class="disabled btn btn-login" title="Export" data-toggle="tooltip"><span class="glyphicon glyphicon-download"></span></a>
+        }
+      </div>*@
+    </div>
+  </div>
+</div>
+
+<div class="row" id="divPulledDocuments">
+  @Html.Partial("_PulledDocuments", Model.Pulls)
+</div>
+
+<div class="row">
+  <div id="JobList" class="col-md-12">
+    @Html.Partial("_PullList", Model.Packs)
+  </div>
+</div>
+
+@section scripts
+{
+  <script src="@Url.Content("~/Scripts/ManagePulls/managePulls.js")"></script>
+}

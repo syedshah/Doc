@@ -1,0 +1,38 @@
+﻿@using DocProcessingWorkflow.Constants
+@using Entities
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("Remove", "Session", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav pull-right">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="dropdown">@Html.ActionLink("Jobs", "View", "Jobs")
+            <ul class="dropdown-menu text-right">
+                <li>@Html.ActionLink("View Jobs", "View", "Jobs")</li>
+                <li>@Html.ActionLink("Submit Jobs", "Index", "SubmitJobs")</li>
+                <li>@Html.ActionLink("Manage Pulls", "Index", "ManagePulls")</li>
+                @if (HttpContext.Current.User.IsInRole(Role.PromoteManCoDocs))
+                {
+                    <li>@Html.ActionLink("Promote Docs", "Index", "PromoteManCoDocs")</li>
+                }
+                
+                @if (HttpContext.Current.User.IsInRole(Role.DSTAdmin))
+                {
+                    <li>@Html.ActionLink("Manage Users", "Index","User")</li>
+                }
+
+            </ul>
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li>@Html.Action("Index", "Environment")</li>
+        <li>
+            <img src='@Url.Content("~/Content/img/assets/poweredbydst.png")' alt="Powered By DST Output" style="width: 100px" /></li>
+    </ul>
+    }
+}
+else
+{
+}

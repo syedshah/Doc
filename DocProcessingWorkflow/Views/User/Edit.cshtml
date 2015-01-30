@@ -1,0 +1,114 @@
+﻿@using DocProcessingWorkflow.Constants
+@using DocProcessingWorkflow.Models.User
+@using DocProcessingWorkflow.Resources.User
+@model DocProcessingWorkflow.Models.User.EditUserViewModel
+
+@{
+    ViewBag.Title = Index.Title;
+}
+
+@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-12">
+            <h2>MY DETAILS <span class="glyphicon glyphicon-user pull-right"></span></h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="profile">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FirstName, "First Name")
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = @Index.FirstName, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(m => m.FirstName)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, "Email Address")
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = @Index.Email })
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.SelectedPrefLandingPage, "Preferred Landing Page")
+                            @Html.DropDownListFor(x => x.SelectedPrefLandingPage, new SelectList(Model.LandingPages), "Please Select...", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LastName, "Last Name")
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = @Index.LastName, @readonly = "readonly" })
+                            @Html.ValidationMessageFor(m => m.LastName)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Phone, "Phone Number")
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = @Index.Phone })
+                            @Html.ValidationMessageFor(m => m.Phone)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.SelectedPrefEnvironment, "Preferred Landing Environment")
+                            @Html.DropDownListFor(x => x.SelectedPrefEnvironment, new SelectList(Model.LandingEnvironments), "Please Select...", new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.HiddenFor(m => m.UserName, new { @class = "UserNameHidden" })
+                    @Html.LabelFor(m => m.UserName, "Username")
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = @Index.UserName, @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.UserName)
+                    @Html.HiddenFor(m => m.Id)
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" id="pwd-container">
+                            @Html.LabelFor(m => m.Password, "New Password") <a class="help glyphicon glyphicon-question-sign" id="PasswordHelp"></a><span id="messages"></span>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control passwordstrength", placeholder = @Index.Password, autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                            <div class="pwstrength_viewport_progress"></div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.IsLockedOut, "Locked")
+                            @Html.CheckBoxFor(m => m.IsLockedOut)
+                            @Html.LabelFor(m => m.IsDeActivated, "Deactivated")
+                            @Html.CheckBoxFor(m => m.IsDeActivated)
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ConfirmPassword, "Confirm Password")
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = @Index.ConfirmPassword })
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    if (HttpContext.Current.User.IsInRole(Role.DSTAdmin))
+     {
+         <div class="row">
+             @Html.Partial("_UserGroupsRoles", Model.UserGroupsRoles)
+         </div>
+     }
+
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-center">
+                <input type="submit" class="btn btn-profile pull-right" style="width: 100px !important" name="submitButton" value="Save" />
+            </p>
+        </div>
+    </div>
+}
+
+<div id="password-popover">
+    @Html.Partial("_PasswordComplexity")
+</div>
+
+@section Scripts {
+    <script src="@Url.Content("~/Scripts/User/user.js")" type="text/javascript"></script>
+}
+

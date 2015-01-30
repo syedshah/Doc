@@ -1,0 +1,7 @@
+﻿@model DocProcessingWorkflow.Models.Jobs.ViewJobsViewModel
+
+             <div class="form-group">
+              @*@Html.LabelFor(x => x.SearchField, "SEARCH")*@
+              @Html.TextBoxFor(x => x.SearchField, new { Class="form-control", placeholder="Search" })
+            </div>
+            <button id="SearchButton" type="button" class="btn btn-search"><span class="glyphicon glyphicon-search"></span></button>

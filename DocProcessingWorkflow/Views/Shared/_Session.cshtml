@@ -1,0 +1,21 @@
+﻿@using DocProcessingWorkflow.Resources.Session
+<div id="pleaseSelectModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    
+    <div class="modal-header">
+      <h3 id="myModalLabel">@Expire.Title</h3>
+    </div>
+    <div class="modal-body">
+      <p>
+        <span>@Expire.SessionExpOne
+          <span id="the_time" style="font-size: 1.1em;color: #0044CC;"></span> @Expire.SessionExpTwo</span>
+        @Expire.ContinueMsg
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button id="continue" class="btn btn-primary">@Expire.Continue</button>
+    </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,36 @@
+﻿@model DocProcessingWorkflow.Models.Jobs.ViewJobsViewModel
+
+<div class="floatLeft"><input id="SearchField" value="" type="text"/></div>
+
+<div class="floatLeft"><button>Search</button></div>
+
+<div class="floatLeft"><a id="exportLink">export results</a></div> <br/> <br/>
+
+<div id="JobData" class="floatLeft">
+	<table>
+		<thead>
+			<tr>
+				<th>Job Reference</th>
+				<th>Company</th>
+				<th>Document</th>
+				<th>Version</th>
+				<th>Owner</th>
+				<th>Submit Date/Time</th>
+				<th>Status</th>
+				<th>Authorise</th>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: Jobs">
+			<tr>
+				<td data-bind="text: JobReference"></td>
+				<td data-bind="text: Company"></td>
+				<td data-bind="text: Document"></td>
+				<td data-bind="text: Version"></td>
+				<td data-bind="text: Owner"></td>
+				<td data-bind="text: SubmitDate"></td>
+				<td data-bind="text: Status"></td>
+				<td data-bind="text: Authorise"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

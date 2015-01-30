@@ -1,0 +1,36 @@
+﻿@model DocProcessingWorkflow.Models.ManagePulls.SearchPacksResultsViewModel
+
+
+@*@Html.HiddenFor(x => x.SearchField, new { id="SearchCriteria"})*@
+
+<div class="modal fade" id="searchPackResultsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title" id="myModalLabel">Job Pack Search Results</h3>
+        @*<h4 >Fund Details: <span id="fundInfo">@Html.Label(Model.FundInfo)</span> </h4>*@
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th class="text-left">Client Reference</th>
+                <th class="text-center">Name</th>
+              </tr>
+            </thead>
+            <tbody data-bind="foreach: Jobs">
+              @Html.Partial("_ShowSinglePack", Model.Packs)
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancelPull" class="btn btn-page" data-dismiss="modal">Close</button>
+        <button type="button" id="pullPack" class="btn btn-page">Pull</button>
+      </div>
+    </div>
+  </div>
+</div>

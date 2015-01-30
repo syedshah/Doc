@@ -1,0 +1,39 @@
+﻿@using DocProcessingWorkflow.Resources.Jobs
+@using Index = DocProcessingWorkflow.Resources.User.Index
+@model DocProcessingWorkflow.Models.Jobs.ViewJobsViewModel
+
+@{
+  ViewBag.Title = ViewJobs.Title;
+}
+
+<div class="row">
+    <div class="col-md-12">
+      <div class="title">
+        <h2 class="pull-left">VIEW JOBS </h2>
+        <form id="viewJobsForm" class="form-inline pull-right" role="form">
+          @Html.Partial("_SearchJobsControl", Model)
+        </form>
+        <div style="clear: both;"></div>
+      </div>
+    </div>
+    <div id="Message" class="col-md-12">
+    </div>
+</div>
+
+
+ @Html.Partial("_JobLogModal")
+ @Html.Partial("_JobReportModal")
+ @Html.Partial("_JobFilesModal")
+
+<div class="row">
+  <div id="JobList" class="col-md-12">
+    @Html.Partial("_JobsList", Model)
+  </div>
+</div>
+
+
+
+@section scripts
+{
+	<script src="@Url.Content("~/Scripts/Jobs/jobs.js")"></script>
+}

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<NUnitProject>
+  <Settings activeconfig="Debug"/>
+  <Config name="Debug">    
+    <assembly path="WebTests\bin\Debug\WebTests.dll"/>
+    <assembly path="ServiceTests\bin\Debug\ServiceTests.dll"/>
+  </Config>
+  <Config name="Release">    
+    <assembly path="WebTests\bin\Release\WebTests.dll"/>
+    <assembly path="ServiceTests\bin\Release\ServiceTests.dll"/>
+  </Config>
+</NUnitProject>

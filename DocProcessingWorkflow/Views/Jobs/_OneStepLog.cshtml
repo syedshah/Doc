@@ -1,0 +1,23 @@
+﻿@model DocProcessingWorkflow.Models.Jobs.OneStepLogViewModel
+
+<div>
+  @{
+
+    if (Model.LogContent.Count() >= 1)
+    {
+
+      foreach (var logContent in Model.LogContent)
+      {
+        <label>@logContent</label>
+        <br/>
+      }
+
+    }
+    else
+    {
+    <p>No One Step Log for this Job</p>
+    }
+
+  }
+</div>
+

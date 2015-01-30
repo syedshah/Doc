@@ -1,0 +1,48 @@
+﻿@model DocProcessingWorkflow.Models.PromoteManCoDocs.PromoteManCoDocViewModel
+
+@using (Html.BeginForm("SubmitManCoDocs", "PromoteManCoDocs", FormMethod.Post, new { id = "promoteManCoDocsForm" }))
+{
+<div class="row">
+    <div class="col-md-12">
+        <h2>Promote ManCoDocs <span class="glyphicon glyphicon-file pull-right"></span></h2>
+    </div>
+</div>
+    <div id="Message">
+        @TempData["message"]
+    </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            @Html.DropDownListFor(x => x.SelectedSourceEnvironment, new SelectList(Model.SourceEnvironments,Model.SelectedSourceEnvironment), "Choose Source Environment", new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            @Html.DropDownListFor(x => x.SelectedTargetEnvironment, new SelectList(Model.TargetEnvironments,Model.SelectedTargetEnvironment), "Choose Target Environment", new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            @Html.DropDownListFor(x => x.SelectedManCoCode, new SelectList(Model.ManCos, "Code", "Description",Model.SelectedManCoCode), "Choose Company", new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+
+
+<div class="row" id="divManCoDocs">
+    @Html.Partial("_MancoDocResults", Model)
+</div>
+}
+
+
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/PromoteManCoDocs/PromoteManCoDocs.js")"></script>
+}

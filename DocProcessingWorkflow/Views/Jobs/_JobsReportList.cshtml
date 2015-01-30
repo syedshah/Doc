@@ -1,0 +1,26 @@
+﻿@model DocProcessingWorkflow.Models.Jobs.JobReportsViewModel
+
+<div class="btn-group">
+  <button type="button" class="btn btn-bbosaction dropdown-toggle" data-toggle="dropdown">
+	            Reports <span class="caret"></span>
+	</button>
+  <ul class="dropdown-menu reportDdl" role="menu">
+    @foreach (var reportItem in Model.Reports)
+    {
+        if (@reportItem.ReportFileName.ToLower().Contains(".xls"))
+         {
+            <li><a class="excelReportDownload" data-filepath=@reportItem.ReportFilePath data-filename='@reportItem.ReportFileName' href="#">@reportItem.ReportFileName</a></li>
+         }
+         else  if (@reportItem.ReportFileName.ToLower().Contains(".pdf"))
+         {
+            <li><a class="pdfDownload" data-path=@reportItem.ReportFilePath data-filename='@reportItem.ReportFileName' href="#">@reportItem.ReportFileName</a></li>
+         }
+         else
+         {
+             <li><a data-toggle="modal" data-target="#jobReportModal" data-filepath=@reportItem.ReportFilePath data-filename='@reportItem.ReportFileName' href="#">@reportItem.ReportFileName</a></li>
+         }
+      
+    }
+  </ul>
+  
+</div>

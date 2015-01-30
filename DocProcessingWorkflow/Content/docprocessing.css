@@ -1,0 +1,13 @@
+﻿div.login {
+  margin-top: 50px;
+}
+
+div.body-content {
+  margin-top: 50px;
+}
+
+div.floatLeft {
+  float: left;
+  display: inline-block;
+  margin-right: 5px;
+}

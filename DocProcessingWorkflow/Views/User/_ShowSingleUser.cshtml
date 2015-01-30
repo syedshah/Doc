@@ -1,0 +1,13 @@
+﻿@using DocProcessingWorkflow.Resources.User
+@model DocProcessingWorkflow.Models.User.ApplicationUserViewModel
+
+<td>@Model.UserName</td>
+<td>@Model.FirstName</td>
+<td>@Model.LastName</td>
+<td>@Model.IsLockedOut</td>
+<td class="text-right">
+    @Html.ActionLink(Index.Edit, "Edit", "User", new { userName = @Model.UserName }, new { @class = "btn btn-page" })
+    
+    @(@Model.IsDeActivated ? Html.ActionLink(Index.Activate, "EnableUser", "User", new { userName = @Model.UserName }, new { @class = "btn btn-page" })
+            : Html.ActionLink(Index.Delete, "Delete", "User", new { userName = @Model.UserName }, new { @class = "btn btn-page" }))
+</td>

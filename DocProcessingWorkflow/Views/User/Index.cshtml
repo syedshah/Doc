@@ -1,0 +1,33 @@
+﻿@using DocProcessingWorkflow.Resources.User
+@model DocProcessingWorkflow.Models.User.UsersViewModel
+
+@{
+  ViewBag.Title = Index.Title;
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="title">
+            <h2 class="pull-left">USERS </h2>
+            @Html.ActionLink(Index.Create, "Create", "User", new { @class = "btn btn-page pull-right" })
+            <form id="viewJobsForm" class="form-inline pull-right" role="form">
+                @Html.TextBoxFor(x => x.SearchUser, new { Class = "form-control", placeholder = "Search" })
+                <button id="SearchButton" type="button" class="btn btn-search"><span class="glyphicon glyphicon-search"></span></button>
+            </form>
+
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+</div>
+
+<div id="cartDocumentData" class="row">
+    <div id="userList" class="col-md-12">
+        @Html.Partial("_PagedUserResults", Model)
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/User/search.js")"></script>
+}

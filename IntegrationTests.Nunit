@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<NUnitProject>
+  <Settings activeconfig="Debug"/>
+  <Config name="Debug">
+  </Config>
+  <Config name="Release">
+  </Config>
+</NUnitProject>

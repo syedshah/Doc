@@ -1,0 +1,518 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+/*
+Theme Name: BBOS
+Description: The official theme for BBOS.
+Author: Anmol Nandha (DST OUTPUT)
+Version: 1.0
+*/
+
+/* FONTS */
+/*@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900);*/
+@font-face {
+    font-family: 'robotoregular';
+    src: url('../fonts/Roboto-Regular-webfont.eot');
+    src: url('../fonts/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Roboto-Regular-webfont.woff') format('woff'),
+         url('../fonts/Roboto-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/Roboto-Regular-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'arapeyregular';
+    src: url('../fonts/arapey-regular-webfont.eot');
+    src: url('../fonts/arapey-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/arapey-regular-webfont.woff') format('woff'),
+         url('../fonts/arapey-regular-webfont.ttf') format('truetype'),
+         url('../fonts/arapey-regular-webfont.svg#arapeyregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@import url(http://fonts.googleapis.com/css?family=Arapey);
+
+/* GENERAL */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'robotoregular';
+    font-weight: 300;
+    background: #ffffff url(img/assets/background.jpg) repeat fixed;
+}
+
+    body .img-responsive {
+        margin: auto;
+    }
+
+    body h1,
+    body h2,
+    body h3,
+    body h4,
+    body h5 {
+        font-family: 'arapeyregular';
+    }
+
+    body .form-control {
+        border-radius: 20px;
+    }
+
+    body .btn {
+        padding-bottom: 0px;
+    }
+
+    body .btn .glyphicon {
+        display: inline-block;
+        color: #ffffff;
+    }
+
+    body .btn-login {
+        padding-bottom: 8px;
+        color: #ffffff;
+        /*font-family: 'arapeyregular';*/
+        font-size: 1.1em;
+        background-color: transparent;
+        border-color: #ffffff;
+        border-radius: 20px;
+    }
+
+        body .btn-login:hover,
+        body .btn-login:focus,
+        body .btn-login:active {
+            background-color: #e4951e;
+            border-color: transparent;
+        }
+
+    body .btn-page {
+        padding-bottom: 8px;
+        color: #e4951e;
+        /*font-family: 'arapeyregular';*/
+        font-size: 1.1em;
+        background-color: transparent;
+        border-color: #e4951e;
+        border-radius: 20px;
+    }
+
+        body .btn-page:hover,
+        body .btn-page:focus,
+        body .btn-page:active {
+          color: #ffffff;
+            background-color: #e4951e;
+            border-color: transparent;
+        }
+
+    body .btn-bbosaction {
+        padding-bottom: 8px;
+        color: #e4951e;
+        /*font-family: 'arapeyregular';*/
+        font-size: 1.1em;
+        background-color: transparent;
+        border-color: #e4951e;
+        border-radius: 20px;
+    }
+
+        body .btn-bbosaction:hover,
+        body .btn-bbosaction:focus,
+        body .btn-bbosaction:active {
+          color: #ffffff;
+            background-color: #e4951e;
+            border-color: transparent;
+        }
+
+    body .btn-search {
+        color: #ffffff;
+        font-family: 'arapeyregular';
+        font-size: 1.4em;
+        background-color: transparent;
+        border-color: transparent;
+        border-radius: 20px;
+    }
+
+        body .btn-search:hover,
+        body .btn-search:focus,
+        body .btn-search:active {
+            background-color: #e4951e;
+            border-color: transparent;
+        }
+
+    body .btn-profile {
+        color: #ffffff;
+        font-family: 'arapeyregular';
+        font-size: 1.4em;
+        background-color: #e4951e;
+        border-color: #ffffff;
+        border-radius: 20px;
+    }
+
+        body .btn-profile:hover,
+        body .btn-profile:focus,
+        body .btn-profile:active {
+            background-color: #e4951e;
+            border-color: transparent;
+        }
+
+    body .alert-danger {
+      border-radius: 30px;
+    }
+
+    body td.hiddenrow {
+        padding: 0 15px !important;
+    }
+
+/* HEADER */
+header {
+    height: 130px;
+}
+  header h1 {
+    margin-top: 53px;
+  }
+  header h3 {
+    padding: 2px 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.4em;
+    text-transform: uppercase;
+    background: #e4951e;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+  header h3 a {
+    color: #1a1a1a;
+  }
+  header h3 a:hover {
+    color: #1a1a1a;
+  }
+
+    header nav.navbar-default {
+        margin-top: 38px;
+        margin-bottom: 0;
+        padding-right: 30px;
+        font-family: 'arapeyregular';
+        font-size: 1.5em;
+        text-transform: uppercase;
+        background: transparent;
+        border:1px solid transparent;
+    }
+
+        header nav.navbar-default .navbar-nav > li > img {
+            margin-left: 10px;
+            padding-bottom: 5px;
+        }
+
+        header nav.navbar-default .navbar-nav > li > .dropdown-menu {
+            border-radius: 0 0 0 0;
+        }
+
+        header nav.navbar-default .navbar-nav > li > a {
+            color: #1a1a1a;
+        }
+
+            header nav.navbar-default .navbar-nav > li > a:hover {
+                color: #ffffff;
+                background: #e4951e;
+                border-top-left-radius: 7px;
+                border-top-right-radius: 7px;
+            }
+
+        header nav.navbar-default .navbar-nav > li.active > a,
+        header nav.navbar-default .navbar-nav > li.active > a:hover {
+            color: #ffffff;
+            background: #e4951e;
+        }
+
+        header nav.navbar-default .navbar-nav > li:hover > ul.dropdown-menu {
+            display: block;
+        }
+
+        header nav.navbar-default .navbar-nav > li > ul.dropdown-menu {
+            margin: 0px;
+            margin-right: -280px;
+            padding: 0;
+            min-width: 600px;
+            display:block !important;
+            background: none;
+            border: 0;
+            box-shadow: none;
+        }
+
+            header nav.navbar-default .navbar-nav > li > ul.dropdown-menu > li {
+                list-style: none;
+                display: inline-block;
+            }
+
+                header nav.navbar-default .navbar-nav > li > ul.dropdown-menu > li a {
+                    padding: 5px 10px 5px;
+                    font-family: 'robotoregular';
+                    font-weight: 400;
+                }
+
+    header .subnav {
+        margin: 0;
+        margin-top: -10px;
+        padding: 0px 15px;
+        height: 30px;
+        font-family: 'arapeyregular';
+        font-size: 1.5em;
+        text-transform: uppercase;
+        background: #bfbfbf;
+        border-radius: 15px;
+    }
+
+        header .subnav a {
+            color: #1a1a1a;
+        }
+
+/* MAIN */
+.main {
+    padding: 25px 0;
+}
+
+    /* LOGIN PAGE */
+    .main .loginform {
+        padding-top: 15px;
+        background: #bfbfbf;
+        border-radius: 40px;
+    }
+        .main .loginform label {
+            margin: 10px 15px 0;
+            font-size: 1.2em;
+            font-weight: normal;
+            color: #ffffff;
+        }
+        .main .loginform .form-control > span {
+            margin-top: 50px;
+        }
+
+        
+    .main .search {
+        margin: 15px 0 0px;
+        padding: 5px 15px;
+        background: #bfbfbf;
+        border-radius: 30px;
+    }
+
+        .main .search label {
+            padding-top: 5px;
+            color: #ffffff;
+            font-size: 1.1em;
+        }
+
+        .main .search .form-control {
+            color: #ffffff;
+            background: transparent;
+            border: 1px solid #ffffff;
+        }
+
+    .main h2 {
+        padding: 5px 30px 5px 15px;
+        font-size: 3em;
+        color: rgba(255,255,255,1);
+        background: #404040;
+        border-radius: 30px;
+    }
+        .main h2 span {
+            margin-top: 6px;
+            font-size: .7em;
+        }
+
+  .main .title {
+    padding: 5px 30px 5px 15px;
+    font-size: 3em;
+    color: rgba(255,255,255,1);
+    background: #404040;
+    border-radius: 30px;
+  }
+  .main .title h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    background: none;
+    border-radius: 0;
+  }
+
+  .main .title .form-inline {
+    margin-top: -17px;
+  }
+
+  .main .title .form-inline label {
+    font-size: 0.5em;
+    font-weight: 300;
+  }
+
+    .main .title a {
+        font-size: 0.5em;
+        color: white;
+    }
+
+  .main .title .form-inline .btn-search {
+    margin-top: 10px;
+    font-size: 0.5em;
+  }
+
+    .main .profile {
+        margin-top: 25px;
+        background: rgba(228,149,30,1);
+    }
+
+        .main .profile label {
+            padding-left: 15px;
+            font-size: 1.1em;
+            font-weight: normal;
+        }
+
+        @media (max-width: 1200px) {
+            .main .profile label {
+                font-size: 1.1em;
+            }
+        }
+        @media (max-width: 1000px) {
+            .main .profile label {
+                font-size: 1em;
+            }
+        }
+
+        .main .profile .form-control {
+            padding-left: 15px;
+            border:0px;
+            background: rgba(255,255,255,1);
+        }
+
+            
+
+.main > .profile > .pwstrength_viewport_progress {
+    margin-top: 10px;
+    height: 30px;
+    overflow: hidden;
+}
+
+    .main a {
+        color: #404040;
+        cursor: help;
+    }
+        .main a:hover {
+            text-decoration: none;
+        }
+
+.main .table {
+    margin-top: 20px;
+}
+
+.main .collapse .table th {
+    background: #bfbfbf;
+}
+
+    .main .table th {
+        background: #e4951e;
+        font-family: 'robotoregular';
+        font-weight: 300;
+        color: #ffffff;
+        text-transform: uppercase;
+        border:1px solid transparent;
+    }
+        .main .table th:first-child, .main .table td:first-child {
+            border-top-left-radius:15px;
+            border-bottom-left-radius: 15px;
+        }
+
+        .main .table th:last-child, .main .table td:last-child {
+            border-top-right-radius:15px;
+            border-bottom-right-radius: 15px;
+        }
+
+    .main .table td {
+        margin-top: 5px;
+    }
+        .main .table td a {
+            color: #e4951e;
+        }
+
+        .main .table td a.btn-page:hover {
+            color: #ffffff;
+        }
+            .main .table td a .glyphicon {
+                font-size: 1.4em;
+            }
+
+.main .pagination {
+    padding: 5px 15px;
+    border-radius: 15px;
+    background: #ffffff;
+    border:1px solid #ccc;
+}
+    .main .pagination a {
+        cursor: pointer;
+    }
+        .main .pagination a:hover {
+            text-decoration: underline;
+        }
+
+#jobFilesModalBody {
+  overflow-y: auto; 
+  overflow-x: auto;
+}
+
+#jobLogModalBody {
+  overflow-y: auto;
+  overflow-x: auto;
+  height: 400px;
+}
+
+#jobReportModalBody {
+  overflow-y: auto;
+  overflow-x: auto;
+  height: 400px;
+}
+
+ .highlight {
+		background-color: #FFFF88;
+ }
+
+.pulls {
+  margin-left: 15px;
+  padding: 5px;
+  background-color: #404040;
+  border-radius: 30px;
+}
+  .pulls p {
+    padding: 7px 0 0 5px;
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  .reportDdl {
+    left: -150px;
+  }
+  .reportDdl2 {
+    left: -180px;
+  }
+
+  .modalLoading {
+  display:    none;
+  position:   fixed;
+  z-index:    1000;
+  top:        0;
+  left:       0;
+  height:     100%;
+  width:      100%;
+  background: rgba( 255, 255, 255, .8 ) 
+              url(../Images/FhHRx.gif)
+              50% 50% 
+              no-repeat;
+  opacity: 0.80;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity = 80);
+  filter: alpha(opacity = 80);
+ }
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+ body.loading {
+    overflow: hidden;   
+ }
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+ body.loading .modalLoading {
+    display: block;
+ }

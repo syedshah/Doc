@@ -1,0 +1,59 @@
+﻿@model DocProcessingWorkflow.Models.SubmitJobs.AdditionalSetupViewModel
+
+@Html.HiddenFor(m => m.ShowAdditionalInfo)
+
+<div class="modal fade" id="additionalSetupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title" id="myModalLabel">Additional Job Setup</h3>
+        <h4 >Fund Details: <span id="fundInfo">@Html.Label(Model.AdditionalFileContent)</span> </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Sort Code</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(m => m.SortCodeOne, null, new { maxlength = 2, @class="form-control", tabindex=1 })
+                            @Html.Hidden("hSortCodeOne")
+                        </div>
+                        <div class="col-md-4" tabindex="-1">
+                            @Html.TextBoxFor(m => m.SortCodeTwo, null, new { maxlength = 2, @class="form-control", tabindex=1 })
+                            @Html.Hidden("hSortCodeTwo")
+                        </div>
+                        <div class="col-md-4" tabindex="-1">
+                            @Html.TextBoxFor(m => m.SortCodeThree, null, new { maxlength = 2, @class="form-control", tabindex=1 })
+                            @Html.Hidden("hSortCodeThree")
+                        </div>
+                    </div>
+                    <span id="sortCodeError" class="warning" tabindex="-1"></span>    
+                </div>
+            </div>
+            <div class="col-md-4" tabindex="-1">
+                <div class="form-group" tabindex="-1">
+                    <label tabindex="-1">Account Number</label>
+                      @Html.TextBoxFor(m => m.AccountNumber, null, new { maxlength = 8, @class="form-control", tabindex=1 })
+                      @Html.Hidden("hAccountNumber")
+                      <span id="accountNumerError" class="warning" tabindex="-1"></span>
+                </div>
+            </div>
+            <div class="col-md-4" tabindex="-1">
+                <div class="form-group" tabindex="-1">
+                    <label tabindex="-1">First Cheque Number</label>
+                      @Html.TextBoxFor(m => m.ChequeNumber, null, new { maxlength = 6, @class="form-control", tabindex=1 })
+                      @Html.Hidden("hChequeNumber")
+                      <span id="chequeNumberError" class="warning" tabindex="-1"></span>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer" tabindex="-1">
+        <button type="button" class="btn btn-page" data-dismiss="modal" tabindex="1">Close</button>
+        <button type="button" id="saveAdditionalInfo" class="btn btn-page" tabindex="1">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+﻿@model DocProcessingWorkflow.Models.Jobs.JobFilesViewModel
+
+@{
+
+  if (Model.JobFiles.Count >= 1)
+  {
+    foreach (var file in Model.JobFiles)
+    {
+      <label>@file.FilePath</label>
+      <br/>
+    }
+  }
+  else
+  {
+    <p>No Input Files for this Job</p>
+  }
+}

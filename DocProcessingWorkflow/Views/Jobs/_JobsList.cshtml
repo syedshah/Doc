@@ -1,0 +1,174 @@
+﻿@using DocProcessingWorkflow.Resources.Jobs
+@using DocProcessingWorkflow.Constants
+@model DocProcessingWorkflow.Models.Jobs.ViewJobsViewModel
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-left"></th>
+            <th class="text-center">@ViewJobs.JobReference</th>
+            <th class="text-center">@ViewJobs.Company</th>
+
+            <th class="text-center">@ViewJobs.Document</th>
+            <th class="text-center">@ViewJobs.Version</th>
+            <th class="text-center">@ViewJobs.Owner</th>
+            <th class="text-center">@ViewJobs.SubmitDateTime</th>
+            <th class="text-center">@ViewJobs.Status</th>
+            <th class="text-center">@ViewJobs.Authorise</th>
+            <th class="text-center"></th>
+            <th class="text-center"></th>
+            <th class="text-right"></th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: Jobs">
+        @foreach (var viewModel in Model.Jobs)
+        {
+            <tr>
+                <td class="text-left">
+                    <a data-toggle="collapse" id="@viewModel.Id" data-target="#@viewModel.Id.Insert(0, "jobRow_")"><span class="glyphicon glyphicon-plus-sign"></span></a>
+                </td>
+                <td class="text-center">@viewModel.JobReference</td>
+                <td class="text-center">@viewModel.Company</td>
+                <td class="text-center">@viewModel.Document</td>
+                <td class="text-center">@viewModel.Version</td>
+                <td class="text-center">@viewModel.Owner</td>
+                <td class="text-center">@viewModel.SubmitDate</td>
+
+                @if (viewModel.Status == JobStatusTypes.Dispatched)
+                {
+                    if (!viewModel.Cancelable)
+                    {
+                        <td id="@viewModel.Id.Insert(0, "jobStatus_")" class="text-center">@viewModel.Status</td>
+                    }
+                    else
+                    {
+                        <td id="@viewModel.Id.Insert(0, "jobStatus_")" class="text-center danger">@viewModel.Status</td>
+                    }
+                }
+                else
+                {
+                    <td id="@viewModel.Id.Insert(0, "jobStatus_")" class="text-center">@viewModel.Status</td>
+                }
+
+
+                @if (viewModel.Status == ViewJobs.Complete & viewModel.JobAuthorise == ViewJobs.Auto)
+                {
+                    <td class="text-center">@ViewJobs.Auto</td>
+                }
+                else if (viewModel.Status == ViewJobs.Complete & viewModel.JobAuthorise == ViewJobs.Manual)
+                {
+                    <td class="text-center">@viewModel.Authoriser</td>
+                }
+                else if (viewModel.Status == ViewJobs.WaitingAuthorisation & viewModel.JobAuthorise == ViewJobs.Manual)
+                {
+                    <td class="text-center">
+                        <input class="authoriseBox" data-jobid=@viewModel.Id type="checkbox" />
+                    </td>
+                }
+                else if (viewModel.Status == ViewJobs.WaitingAuthorisation & viewModel.JobAuthorise == ViewJobs.Auto)
+                {
+                    <td class="text-center">@ViewJobs.Auto</td>
+                }
+                else
+                {
+                    <td class="text-center"></td>
+                }
+
+                <td class="text-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-bbosaction dropdown-toggle" data-toggle="dropdown">
+                            Action <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a data-toggle="modal" id=@viewModel.Id.Insert(0, "jobLog_") data-grid=@viewModel.Grid data-target="#jobLogModal" href="#">Job Log</a></li>
+                            <li><a data-toggle="modal" data-jobid=@viewModel.Id data-target="#jobFilesModal" href="#">File List</a></li>
+                            @if (Model.CanChangeStatus)
+                            {
+                                <li><a id=@viewModel.Id.Insert(0, "cancelJob_") data-toggle="modal" class="@(viewModel.Cancelable ? "" : "hidden")">Cancel Job</a></li>
+                            }
+                            <li><a id=@viewModel.Id.Insert(0, "exportJobToExcel_") href="#">Export To excel</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="allOneStepReport text-center" id=@viewModel.Id.Insert(0, "report_")>
+                    @Html.Action("GetJobReportList", "Jobs", new { jobId = viewModel.Id, grid = viewModel.Grid })
+                </td>
+                <td class="text-left">
+                    @Html.Action("GetIfJobHasPdf", "Jobs", new { jobId = viewModel.Id, grid = viewModel.Grid })
+                </td>
+            </tr>
+            <tr>
+                <td colspan="15" class="hiddenrow">
+                    <div class="collapse col-md-12" id=@viewModel.Id.Insert(0, "jobRow_")>
+                        <p>
+                            <strong>GRID:</strong> @viewModel.Grid<br />
+                            <strong>ALLOCATOR GRID:</strong> @viewModel.AllocatorGRID
+                        </p>
+                        <table class="table" style="background: none;">
+                            <thead>
+                                <tr>
+                                    <th>Filename</th>
+                                    <th>Images</th>
+                                    <th>Sheets</th>
+                                    <th>Packs</th>
+                                    <th>Docket Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var enclosingJob in @viewModel.EnclosingJobs)
+                                {
+                                    <tr id="@enclosingJob.EnclosingJobID.ToString().Insert(0, "enclosingJobRow_")">
+                                        <td>@enclosingJob.Filename</td>
+                                        <td>@enclosingJob.Pages</td>
+                                        <td>@enclosingJob.Sheets</td>
+                                        <td>@enclosingJob.Packs</td>
+                                        <td>
+                                            @(HttpContext.Current.User.IsInRole(Role.DSTAdmin) ? Html.TextBoxFor(x => enclosingJob.PostalDocketNumber, new { @id = "DocketNumber_" + enclosingJob.EnclosingJobID.ToString() })
+                                            : Html.TextBoxFor(x => enclosingJob.PostalDocketNumber, new { @readonly = "readonly", @id = "DocketNumber_" + enclosingJob.EnclosingJobID.ToString() }))
+
+                                            <a id="@enclosingJob.EnclosingJobID" href="#">
+                                                @if (enclosingJob.PostalDocketNumberMissing)
+                                                {
+                                                    <span class="glyphicon glyphicon-refresh"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="glyphicon glyphicon-ok"></span>
+                                                }
+                                            </a>
+                                            <label class="alert alert-danger" id=@enclosingJob.EnclosingJobID.ToString().Insert(0, "Error_") visible="false" style="display: none;">@enclosingJob.Error</label>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+@{
+    var rand = new Random(DateTime.Now.Millisecond);
+    var randomNumber  = rand.Next();
+}
+<p class="pagination col-md-12">
+    <span id="totalNumberOfDocuments"><strong>@ViewJobs.TotalItems @Model.PagingInfo.TotalItems</strong></span> |
+    <span id="showingDocumentsSpan">@ViewJobs.ShowingJobs @Model.PagingInfo.StartRow - @Model.PagingInfo.EndRow</span> |
+    @Html.Pager(Model.PagingInfo.ItemsPerPage, Model.PagingInfo.CurrentPage, Model.PagingInfo.TotalItems, new AjaxOptions { UpdateTargetId = "JobList", OnBegin = "return DocProcessing.Jobs.searchFieldVal()", OnSuccess = "return DocProcessing.Jobs.onPageChangeSuccess()", HttpMethod = "Post" }).Options(x => x
+                                                                                                                                                                                                                                                                         .Action("ViewJobsAjax")
+                                                                                                                                                                                                                                                                         .AddRouteValue("rnd", randomNumber))
+    @if (Model.CanShowActionMenu)
+    {
+        Html.RenderPartial("_JobActions", Model);
+    }
+
+    @* @if (Model.CanAuthoriseJobs){<button onclick=" DocProcessing.Jobs.authoriseSelected(); " class="btn btn-page pull-right">Authorise Selected</button>}*@
+
+</p>
+
+<div id="results"></div>
+@Html.HiddenFor(m => Model.CurrentPage)
+@Html.HiddenFor(m => Model.SearchValue)

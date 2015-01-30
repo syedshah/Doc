@@ -1,0 +1,68 @@
+﻿@model DocProcessingWorkflow.Models.SubmitJobs.InputFileViewModel
+
+<div class="col-md-12">
+  <div class="form-group">
+    @if (Model.Folders.Count > 0)
+    {
+      @Html.DropDownListFor(x => x.SelectedFolder, new SelectList(Model.Folders), new { @class = "form-control" })
+    }
+    else
+    {
+      @Html.DropDownListFor(x => x.SelectedFolder, new SelectList(Model.Folders), "Input file location", new { @class = "form-control" })
+    }
+  <a id="copyFolderLocation" class="btn btn-page" data-toggle="modal" data-target="#myModal"><span>Copy folder location</span></a>
+  </div>
+</div>
+<div class="col-md-6"></div>
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group">
+            <input type="text" id="filesSearch" name="filesSearch" class="form-control" placeholder="File Search"/>
+        @Html.ListBoxFor(x => x.AvailableFiles, new MultiSelectList(Model.Files), new { @class = "form-control", style="height:300px;" })
+      </div>
+    </div>
+    <div class="col-md-2">
+      <input id="btnAddAll" type="button" value=" >> " class="btn btn-default col-md-12" />
+      <input id="btnRemove" type="button" value="<" class="btn btn-default col-md-6"></input>
+
+      <input id="btnAdd" type="button" value=" > " class="btn btn-default col-md-6" />
+      <input id="btnRemoveAll" type="button" value=" << " class="btn btn-default col-md-12" />
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        @Html.ListBoxFor(x => x.ChosenFiles, new List<SelectListItem>(), new { @class = "form-control", style="height:300px;" })
+      </div>
+    </div>
+  </div>
+  <label id="fileSelectedMessage"></label>
+    <p class="pagination col-md-12">
+        <a id="submitjob" class="btn btn-page pull-right"><span>Submit Job</span></a>
+        @Html.HiddenFor(m => m.RequiresAdditionalInfo)
+      @*    @if (Model.RequiresAdditionalInfo && Model.ShowAdditionalInfo)
+        {
+          *@
+      <a id="additionalSetup" class="btn btn-page pull-right" style="margin-right:10px;">
+            <span>Additional Setup</span>
+          </a>
+     @*   }*@
+    </p>
+</div>
+<div>
+  <div>
+    
+  </div>
+</div>
+
+  <div>
+    
+  </div>
+
+<div id="additionalInfo">
+  @Html.Partial("_AdditionalInfo", Model.AdditionalSetupViewModel)
+</div>
+
+<div id="modalPopUp">
+  @Html.Partial("_ModalPopUp")
+</div>
+

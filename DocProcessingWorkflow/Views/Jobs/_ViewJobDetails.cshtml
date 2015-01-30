@@ -1,0 +1,29 @@
+﻿@model DocProcessingWorkflow.Models.Jobs.JobViewModel
+
+<div>
+    @{
+        if (Model != null)
+        {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-left">GRID</th>
+                    @if (Model.AllocatorGRID != null)
+                    {
+                        <th class="text-left">AllocatorGRID</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-left">@Model.Grid</td>
+                    @if (Model.AllocatorGRID != null)
+                    {
+                        <td class="text-left">@Model.AllocatorGRID</td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+        }
+    }
+</div>

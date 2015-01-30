@@ -1,0 +1,42 @@
+﻿@model DocProcessingWorkflow.Models.SubmitJobs.SubmitJobsViewModel
+@using (Html.BeginForm(null, null, FormMethod.Post, new {id = "__AjaxAntiForgeryForm"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>SUBMIT JOBS <span class="glyphicon glyphicon-file pull-right"></span></h2>
+        </div>
+    </div>
+    <div id="Message">
+        @TempData["message"]
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.DropDownListFor(x => x.SelectedManCoId, new SelectList(Model.ManCos, "Code", "Description"), "Choose Company", new {@class = "form-control"})
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.DropDownListFor(x => x.SelectedDocTypeId, new SelectList(Model.DocTypes, "Code", "Code"), "Choose Document", new {@class = "form-control"})
+            </div>
+        </div>
+    </div>
+    <div class="row" id="divFileInfo">
+        @Html.Partial("_InputFileResults", Model.Files)
+    </div>
+    <div>
+        <div>
+            @Html.CheckBoxFor(x => x.AllowReprocessing)
+            <span>Allow reprocessing</span>
+        </div>
+    </div>
+
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/SubmitJobs/submitJobs.js")"></script>
+}
+}

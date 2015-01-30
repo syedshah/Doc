@@ -1,0 +1,46 @@
+﻿@using DocProcessingWorkflow.HtmlHelpers
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - BNYM Bravura Output Solution</title>
+    <!-- Bootstrap -->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="row">
+            <div class="col-md-2 col-sm-2 col-xs-2 logo">
+                <h1 style="margin-top: 10px;">@Html.ActionImage(@Url.Action("Index","Home",new{}),@Url.Content("~/Content/img/assets/logo.png"),"BBOS")</h1>
+            </div>
+            <div class="col-md-10 col-sm-10 col-xs-10">
+                <p class="text-right" style="margin-top: 30px;"><img src='@Url.Content("~/Content/img/assets/poweredbydst.png")' alt="Powered By DST Output" style="width: 100px" /></p>
+                <div class="subnav">
+                    <p>LOG IN</p>
+                </div>
+            </div>
+        </header>
+      <div class="main">
+        @RenderBody()
+      </div>
+        @Html.Hidden(HttpContext.Current.Request.ApplicationPath, HttpContext.Current.Request.ApplicationPath, new { ID = "SiteName" })
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+  @Scripts.Render("~/Scripts/App.js")
+  @Scripts.Render("~/Scripts/Utility/utility.js")
+   @Scripts.Render("~/Scripts/Session/idleChecker.js")
+  @Scripts.Render("~/Scripts/Session/idleManagement.js")
+  @Scripts.Render("~/Scripts/Session/sessionNew.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

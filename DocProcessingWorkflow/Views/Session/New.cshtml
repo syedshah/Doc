@@ -1,0 +1,36 @@
+﻿@using DocProcessingWorkflow.Resources.User
+@model DocProcessingWorkflow.Models.User.UserViewModel
+
+@{
+    ViewBag.Title = "Welcome to BBOS";
+    Layout = "~/Views/Session/_Layout.cshtml";
+}
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 loginform">
+    @using (Html.BeginForm("Create", "Session", FormMethod.Post, new{role="form"}))
+    {
+      @Html.AntiForgeryToken()
+      <div class="form-group">
+        @Html.LabelFor(m => m.UserName, Login.Username)
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.UserName)
+      </div>
+      <div class="form-group">
+        @Html.LabelFor(m => m.Password, Login.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Password)
+      </div>
+      <div id="Message">
+        <div id="loginError" class="alert alert-danger">
+          @TempData["message"]
+        </div>
+      </div>
+      <p class="text-center"><input type="submit" class="btn btn-login" value="Submit" /></p>
+    }
+  </div>
+</div>
+
+@section scripts
+{
+	
+}

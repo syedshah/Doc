@@ -1,0 +1,34 @@
+﻿
+@model DocProcessingWorkflow.Models.ManagePulls.PulledDocumentsViewModel
+
+<div class="col-md-12">
+  <div class="row">
+    @foreach (var pulledItem in Model.Pulls)
+      {
+        <div class="col-md-2 pulls">
+            <p class="pull-left">
+            @pulledItem.DisplayName
+            @Html.HiddenFor(m => pulledItem.ClientReference , new { @class= "clientReference" })
+            @Html.HiddenFor(m => pulledItem.Name , new { @class= "name" })
+            </p> 
+          <button class="removePull pull-right btn btn-profile" data-clientref="@pulledItem.ClientReference"><span class="glyphicon glyphicon-remove"></span></button>
+        </div>
+      }
+      
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p style="margin-top: 15px;">
+      @if (Model.Pulls.Count > 0 && Model.CanAuthorisePullList)
+        {
+            <a id="authorisePullList" class="btn btn-page" style="margin-right:10px;">
+              <span>Authorise Pull List</span>
+            </a>
+        }
+      </p>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,20 @@
+﻿@model DocProcessingWorkflow.Models.Jobs.JobPdfsViewModel
+
+
+@if (Model.Pdfs.Count >= 1)
+{
+  
+<div class="btn-group">
+  
+  <button class="btn btn-bbosaction dropdown-toggle" data-toggle="dropdown">
+    <img src="~/Content/img/assets/pdf.jpg" alt="PDF" style="width:16px;" /> <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu reportDdl2">
+     @foreach (var pdf in Model.Pdfs)
+    {
+    <li><a class="pdfDownload" data-fileName='@pdf.PdfName' data-path=@pdf.PdfFilePath href="#">@pdf.PdfName</a></li>
+    }
+ </ul>
+ 
+  </div>
+}

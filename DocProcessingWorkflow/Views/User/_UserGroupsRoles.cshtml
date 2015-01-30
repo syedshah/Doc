@@ -1,0 +1,28 @@
+﻿@model DocProcessingWorkflow.Models.User.UserGroupsRolesViewModel
+
+
+<div class="col-md-3">
+    <h2>Groups</h2>
+    <div style="overflow: scroll; height: 320px;">
+        @foreach (var grp in Model.Groups)
+        {
+            <div class="form-group">
+                <input id="@grp.GroupID" type="checkbox" name="SelectedGroups" value="@grp.GroupID" @(grp.IsAssignedToUser ? "checked" : "")/>
+                <label for="@grp.GroupID">@grp.GroupName</label>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="col-md-3">
+    <h2>Roles</h2>
+    <div style="overflow: scroll; height: 320px;">
+        @foreach (var role in Model.AvailableRoles)
+        {
+            <div class="form-group">
+                <input id="@role" type="checkbox" name="SelectedRoles" value="@role" @(Model.UserAssignedRoles.Contains(role) ? "checked" : "")/>
+                <label for="@role">@role</label>
+            </div>
+        }
+    </div>
+</div>

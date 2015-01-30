@@ -1,0 +1,17 @@
+﻿@model DocProcessingWorkflow.Models.Jobs.ViewJobsViewModel
+
+<div class="btn-group btn-page pull-right dropup">
+	 <button type="button" class="btn btn-bbosaction dropdown-toggle" data-toggle="dropdown">
+	   Job Actions <span class="caret"></span>
+	 </button>
+  <ul class="dropdown-menu" role="menu">
+    @if (Model.CanAuthoriseJobs)
+    {
+      <li><a id="authoriseSelected"  href="#">Authorise Selected</a></li>
+    }
+    @if (Model.CanExportResults)
+    {
+     <li><a id="exportToExcel"  href="#">Export To excel</a></li>
+    }
+  </ul>
+</div>

@@ -1,0 +1,88 @@
+﻿@using DocProcessingWorkflow.Resources.Jobs
+@model DocProcessingWorkflow.Models.Jobs.JobsViewModel
+
+@{
+	ViewBag.Title = Index.Title;
+}
+
+<h2>Index</h2>
+
+<div id="JobsContent">
+  <ul class="nav nav-tabs" id="JobsTabs">
+    <li><a href="#ViewJobsTab" data-toggle="tab">View Jobs</a></li>
+    <li><a href="#SubmitJobsTab" data-toggle="tab">Submit Jobs</a></li>
+    <li><a href="#ManagePullsTab" data-toggle="tab">Manage Pulls</a></li>
+    @*<li><a href="#ManageInsertsTab" data-toggle="tab">Manage Inserts</a></li>*@
+  </ul>
+  <div class="tab-content">
+	<div id="ViewJobsTab" class="tab-pane active" data-bind="with: ViewJobs">
+	<br/>
+	  @Html.Partial("_ViewJobs", Model.ViewJobs)
+
+	</div>
+	<div id="SubmitJobsTab" class="tab-pane active" data-bind="with: SubmitJobs">
+
+	</div>
+	<div id="ManagePullsTab" class="tab-pane active" data-bind="with: PullJobs">
+
+	</div>
+    <div id="ManageInsertsTab" class="tab-pane active" data-bind="with: InsertJobs">
+
+    </div>
+    
+    </div>
+  </div>
+
+
+
+@section ko_apply
+{
+	@*$(function () {
+
+	      var initialData;
+
+        @if (Model != null)
+        {
+
+	        <text>
+		     initialData = @Html.Raw(Json.Encode(Model))
+	       </text>
+
+         }
+				 
+				 DocProcessing.Jobs.Initialize(initialData);
+	 })();*@
+}
+
+
+
+
+@section scripts
+{
+	@*<script src="@Url.Content("~Scripts/Binding/Models/JobsModel.js")"></script>*@
+	<script src="@Url.Content("~/Scripts/Binding/Models/ViewJobsModel.js")"></script>
+	<script src="@Url.Content("~/Scripts/Binding/Models/PullJobsModel.js")"></script>
+	<script src="@Url.Content("~/Scripts/Binding/Models/InsertJobsModel.js")"></script>
+	<script src="@Url.Content("~/Scripts/Binding/Models/SubmitJobsModel.js")"></script>
+	<script src="@Url.Content("~/Scripts/Binding/ViewModels/JobsViewModel.js")"></script>
+  <script src="@Url.Content("~/Scripts/Jobs/jobs.js")"></script>
+	<script type="text/javascript">
+	$(function () {
+
+		var initialData;
+
+		@if (Model != null)
+        {
+
+        	<text>
+		initialData = @Html.Raw(Json.Encode(Model))
+		</text>
+
+        }
+
+ DocProcessing.Jobs.Initialize(initialData);
+	})();
+	</script>
+
+}
+

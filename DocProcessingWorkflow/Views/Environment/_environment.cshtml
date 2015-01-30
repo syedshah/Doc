@@ -1,0 +1,6 @@
+﻿
+@model DocProcessingWorkflow.Models.Environment.EnvironmentViewModel
+
+@Html.DropDownListFor(x => x.SelectedEnvironment, new SelectList(Model.Environments) , new { @class = "form-control"})
+
+<input type="hidden" id="hdnUrl" value="@Request.Url.PathAndQuery" />

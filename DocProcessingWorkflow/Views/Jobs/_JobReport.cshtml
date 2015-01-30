@@ -1,0 +1,8 @@
+﻿@model DocProcessingWorkflow.Models.Jobs.JobReportViewModel
+
+<div>
+  @foreach (var reportContent in Model.ReportFileContent)
+  {
+    <label>@reportContent</label><br/>
+  }
+</div>
